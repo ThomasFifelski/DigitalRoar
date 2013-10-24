@@ -23,6 +23,7 @@ android {
 }
 
 dependencies {
+    dependencies { compile files('libs/android-support-v4.jar','libs/GoogleAdMobAdsSdk-6.4.1.jar')}
 
 	// You must install or update the Support Repository through the SDK manager to use this dependency.
 	// The Support Repository (separate from the corresponding library) can be found in the Extras category.

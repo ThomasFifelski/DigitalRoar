@@ -14,6 +14,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdSize;
+import com.google.ads.doubleclick.DfpAdView;
 import com.tom.digitalroar.util.SystemUiHider;
 
 /**
@@ -50,12 +53,28 @@ public class FullscreenActivity extends Activity {
      * The instance of the {@link SystemUiHider} for this activity.
      */
     private SystemUiHider mSystemUiHider;
+    String MY_AD_UNIT_ID = "ca-app-pub-5357322922990776/1562312443";
+    private DfpAdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_fullscreen);
+        // Create the adView
+        adView = new DfpAdView(this, AdSize.BANNER, MY_AD_UNIT_ID);
+
+        // Lookup your LinearLayout assuming it’s been given
+        // the attribute android:id="@+id/mainLayout"
+//                LinearLayout layout = (LinearLayout)findViewById(R.id.mainLayout
+//                );
+
+        // Add the adView to it
+//                layout.addView(adView);
+
+        // Initiate a generic request to load it with an ad
+        adView.loadAd(new AdRequest());
+
 
         final View controlsView = findViewById(R.id.fullscreen_content_controls);
         final View contentView = findViewById(R.id.fullscreen_content);
@@ -108,6 +127,8 @@ public class FullscreenActivity extends Activity {
             public void onClick(View view) {
                 if (TOGGLE_ON_CLICK) {
                     mSystemUiHider.toggle();
+
+
                     TextView editText = (TextView) findViewById(R.id.editText);
                     TextView displayText = (TextView) findViewById(R.id.fullscreen_content);
                     displayText.setText(editText.getText());

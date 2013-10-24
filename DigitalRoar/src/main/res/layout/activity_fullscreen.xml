@@ -1,17 +1,25 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000101"
+    android:id="@+id/frame"
     tools:context=".FullscreenActivity">
 
-    <!--<com.google.ads.doubleclick.DfpAdView android:id="@+id/adView"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--ads:adUnitId="ca-app-pub-5357322922990776/1562312443"-->
-        <!--ads:adSize="BANNER"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--ads:loadAdOnCreate="true"/>-->
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="top|center_horizontal">
+
+    <com.google.ads.doubleclick.DfpAdView android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adUnitId="ca-app-pub-5357322922990776/1562312443"
+        ads:adSize="BANNER"
+        android:layout_alignParentBottom="true"
+        ads:loadAdOnCreate="true"/>
+    </LinearLayout>
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
