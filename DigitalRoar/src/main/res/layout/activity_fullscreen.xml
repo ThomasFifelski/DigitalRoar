@@ -7,19 +7,13 @@
     android:id="@+id/frame"
     tools:context=".FullscreenActivity">
 
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="top|center_horizontal">
+    <!--<LinearLayout-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_gravity="top|center_horizontal">-->
 
-    <com.google.ads.doubleclick.DfpAdView android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        ads:adUnitId="ca-app-pub-5357322922990776/1562312443"
-        ads:adSize="BANNER"
-        android:layout_alignParentBottom="true"
-        ads:loadAdOnCreate="true"/>
-    </LinearLayout>
+
+    <!--</LinearLayout>-->
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
@@ -40,7 +34,7 @@
     <FrameLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        android:layout_gravity="left|top">
+        android:layout_gravity="center">
 
         <LinearLayout android:id="@+id/fullscreen_content_controls"
             style="?buttonBarStyle"
@@ -50,20 +44,23 @@
             android:background="@color/black_overlay"
             android:orientation="horizontal"
             tools:ignore="UselessParent">
-
-            <EditText
-                android:layout_width="195dp"
+         <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+             android:id="@+id/t">
+            <com.google.ads.doubleclick.DfpAdView android:id="@+id/adView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText"
-                android:text=""
-                android:imeOptions="actionDone"
-                android:hint="Enter Message"
-                android:singleLine="true"
-                android:background="#000000"
-                android:textColor="#1affff"
-                android:layout_gravity="left|start"
-                android:layout_marginRight="-13dp" />
-            <Switch
+                ads:adUnitId="ca-app-pub-5357322922990776/1562312443"
+                ads:adSize="SMART_BANNER"
+                android:layout_above="@+id/editText"
+                ads:loadAdOnCreate="true"/>
+                <!--android:layout_gravity="center_horizontal|bottom"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_centerHorizontal="true" -->
+
+
+             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Flash"
@@ -71,16 +68,26 @@
                 android:background="#000000"
                 android:textColor="#1affff"
                 android:singleLine="true"
-                android:layout_gravity="right|end"
-                android:layout_marginLeft="-10dp" />
+                 android:layout_alignTop="@+id/editText"
+                 android:layout_alignParentRight="true" />
 
+             <EditText
+                 android:layout_width="195dp"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/editText"
+                 android:text=""
+                 android:imeOptions="actionDone"
+                 android:hint="Enter Message"
+                 android:singleLine="true"
+                 android:background="#000000"
+                 android:textColor="#1affff"
+                 android:layout_alignParentBottom="true"
+                 android:layout_alignParentLeft="true" />
+         </RelativeLayout>
         </LinearLayout>
 
 
-
-
     </FrameLayout>
-
 
 
 </FrameLayout>

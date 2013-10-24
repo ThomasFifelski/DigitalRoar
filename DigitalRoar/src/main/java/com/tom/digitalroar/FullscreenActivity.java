@@ -5,14 +5,16 @@ import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.inputmethod.EditorInfo;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.ads.AdRequest;
 import com.google.ads.AdSize;
@@ -61,6 +63,18 @@ public class FullscreenActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_fullscreen);
+        EditText max = (EditText) findViewById(R.id.editText);
+        max.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                    TextView editText = (TextView) findViewById(R.id.editText);
+                    TextView displayText = (TextView) findViewById(R.id.fullscreen_content);
+                    displayText.setText(editText.getText());
+                    //  Log.i(TAG, "Enter pressed");
+                }
+                return false;
+            }
+        });
         // Create the adView
         adView = new DfpAdView(this, AdSize.BANNER, MY_AD_UNIT_ID);
 
@@ -129,9 +143,6 @@ public class FullscreenActivity extends Activity {
                     mSystemUiHider.toggle();
 
 
-                    TextView editText = (TextView) findViewById(R.id.editText);
-                    TextView displayText = (TextView) findViewById(R.id.fullscreen_content);
-                    displayText.setText(editText.getText());
 
                   Switch mySwitch = (Switch) findViewById(R.id.switch1);
 
@@ -154,8 +165,8 @@ public class FullscreenActivity extends Activity {
                                 anim.setRepeatCount(Animation.INFINITE);
                                 myText.startAnimation(anim);
 
-                                Toast.makeText(getApplicationContext(),
-                                        "The switch is On", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getApplicationContext(),
+//                                        "Flash", Toast.LENGTH_SHORT).show();
 
                             } else {
                                 TextView myText = (TextView) findViewById(R.id.fullscreen_content);
@@ -167,9 +178,9 @@ public class FullscreenActivity extends Activity {
                                 myText.startAnimation(anim);
                                 myText.clearAnimation();
 
-
-                                Toast.makeText(getApplicationContext(),
-                                        "The switch is OFF", Toast.LENGTH_SHORT).show();
+//
+//                                Toast.makeText(getApplicationContext(),
+//                                        "no flash", Toast.LENGTH_SHORT).show();
                             }
 
                         }
